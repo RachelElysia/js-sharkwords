@@ -42,8 +42,7 @@ const disableLetterButton = (buttonEl) => {
 
 // Return `true` if `letter` is in the word.
 //
-const isLetterInWord = (letter) => {
-  let word = 'hello';
+const isLetterInWord = (letter, word) => {
   return (word.includes(letter));
 }
 
@@ -89,7 +88,12 @@ const resetGame = () => {
 //
 (function startGame() {
   // For now, we'll hardcode the word that the user has to guess.
-  const word = 'hello';
+  const max = WORDS.length - 1;
+
+  const number = getRandomInt(max);
+
+  const word = WORDS[number];
+
 
   createDivsForChars(word);
   generateLetterButtons();

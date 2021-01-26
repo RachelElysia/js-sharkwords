@@ -46,8 +46,7 @@ const disableLetterButton = (buttonEl) => {
 
 // Return `true` if `letter` is in the word.
 //
-const isLetterInWord = (letter) => {
-  let word = 'hello';
+const isLetterInWord = (letter, word) => {
   return (word.includes(letter));
 };
 
@@ -90,10 +89,18 @@ const resetGame = () => {
   window.location = '/sharkwords';
 };
 
+function getRandomInt(max) {
+  return Math.floor(Math.random()* max);
+};
+
 // This is like if __name__ == '__main__' in Python
 //
 (function startGame() {
-  const word = 'hello';
+  const max = WORDS.length - 1;
+
+  const number = getRandomInt(max);
+
+  const word = WORDS[number];
 
   createDivsForChars(word);
   generateLetterButtons();
@@ -105,7 +112,7 @@ const resetGame = () => {
 
       const letter = clickedBtn.innerHTML;
 
-      if (isLetterInWord(letter)) {
+      if (isLetterInWord(letter, word)) {
         handleCorrectGuess(letter);
       } else {
         handleWrongGuess(letter);
