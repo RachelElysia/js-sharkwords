@@ -52,7 +52,7 @@ const isLetterInWord = (letter) => {
 const handleCorrectGuess = (letter) => {
   // letter in word gave us true
   // take letter and put inside div element with the class letter
-  const correctLetter = $('letter');
+  const correctLetter = $(`.${letter}`);
   correctLetter.html(`${letter}`);
 };
 
@@ -66,7 +66,9 @@ const handleWrongGuess = () => {
   if (numWrong >= 5) {
     // Look at the docs how to disable child elements using * selector!
     const button = $('#letter-buttons *');
-    button.attr('disabled', true);   
+    button.attr('disabled', true);
+    //const again = $('#play-again'); 
+    $('#play-again').show();
   }
 };
 
