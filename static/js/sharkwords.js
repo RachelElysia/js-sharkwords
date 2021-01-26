@@ -63,6 +63,13 @@ const handleCorrectGuess = (letter) => {
 //
 const handleWrongGuess = () => {
   numWrong++;
+
+  // Change id = "shark-img" child object attribute SRC
+  if (numWrong <= 5) {
+    const sharkimg = $('#shark-img *');
+    sharkimg.attr('src', `/static/images/guess${numWrong}.png`);
+  }
+
   if (numWrong >= 5) {
     // Look at the docs how to disable child elements using * selector!
     const button = $('#letter-buttons *');
