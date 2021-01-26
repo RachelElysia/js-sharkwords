@@ -43,13 +43,17 @@ const disableLetterButton = (buttonEl) => {
 // Return `true` if `letter` is in the word.
 //
 const isLetterInWord = (letter) => {
-  // Replace this with your code
-};
+  let word = 'hello';
+  return (word.includes(letter));
+}
 
 // Called when `letter` is in word. Update contents of divs with `letter`.
 //
 const handleCorrectGuess = (letter) => {
-  // Replace this with your code
+  // letter in word gave us true
+  // take letter and put inside div element with the class letter
+  const correctLetter = $('letter');
+  correctLetter.html(`${letter}`);
 };
 
 // Called when `letter` is not in word.
@@ -58,7 +62,12 @@ const handleCorrectGuess = (letter) => {
 // message. Otherwise, increment `numWrong` and update the shark image.
 //
 const handleWrongGuess = () => {
-  // Replace this with your code
+  numWrong++;
+  if (numWrong >= 5) {
+    // Look at the docs how to disable child elements using * selector!
+    const button = $('#letter-buttons *');
+    button.attr('disabled', true);   
+  }
 };
 
 //  Reset game state. Called before restarting the game.
@@ -83,7 +92,7 @@ const resetGame = () => {
     const letter = clickedBtn.html();
 
     if (isLetterInWord(letter)) {
-      handleCorrectGuess(letter);
+      handleCorrectGuess(letter,);
     } else {
       handleWrongGuess(letter);
     }
