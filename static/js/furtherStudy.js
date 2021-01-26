@@ -41,19 +41,24 @@ const generateLetterButtons = () => {
 // `buttonEl` is an `HTMLElement` object.
 //
 const disableLetterButton = (buttonEl) => {
-  // Replace this with your code
+  buttonEl.setAttribute('disabled', true);
 };
 
 // Return `true` if `letter` is in the word.
 //
 const isLetterInWord = (letter) => {
-  // Replace this with your code
+  let word = 'hello';
+  return (word.includes(letter));
 };
 
 // Called when `letter` is in word. Update contents of divs with `letter`.
 //
 const handleCorrectGuess = (letter) => {
-  // Replace this with your code
+  const letterButtons = document.querySelectorAll(`.${letter}`);
+  
+  for (letterButton of letterButtons){
+    letterButton.innerHTML = `${letter}`;
+  }
 };
 
 // Called when `letter` is not in word.
@@ -62,7 +67,21 @@ const handleCorrectGuess = (letter) => {
 // message. Otherwise, increment `numWrong` and update the shark image.
 //
 const handleWrongGuess = () => {
-  // Replace this with your code
+  numWrong++;
+
+  if (numWrong <= 5) {
+    const imagechange = document.querySelector('#shark-img *');
+    imagechange.setAttribute('src', `/static/images/guess${numWrong}.png`);
+  }
+
+  if (numWrong >= 5) {
+    const buttons = document.querySelectorAll('#letter-buttons *');
+    for (button of buttons) {
+      button.setAttribute('disabled', true);
+    } 
+
+    document.querySelector('#play-again').style.display = ''; 
+  }
 };
 
 //  Reset game state. Called before restarting the game.
